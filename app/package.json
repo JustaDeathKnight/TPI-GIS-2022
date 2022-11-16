@@ -14,7 +14,8 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-tooltip": "^4.5.0",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "vite-plugin-pwa": "^0.13.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",

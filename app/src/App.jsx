@@ -19,6 +19,7 @@ import VectorSource from 'ol/source/Vector'
 import { LineString } from 'ol/geom'
 import { useDispatch, useSelector } from 'react-redux'
 import VectorLayer from './components/Layers/VectorLayer'
+import { VITE_MAP } from './vite-env.d'
 // function addMarkers (lonLatArray) {
 //   const iconStyle = new Style({
 //     image: new Icon({
@@ -51,7 +52,7 @@ const App = () => {
 
   const [projection, setProjection] = useState('EPSG:4326')
 
-  const url = 'http://localhost/qgis/qgis_mapserv.fcgi.exe?map=C:\\Users\\Diego\\facu\\map-server\\tpigis.qgz'
+  const url = `http://localhost/qgis/qgis_mapserv.fcgi.exe?map=${VITE_MAP}`
   const [source, setSource] = useState(new VectorSource())
   return (
     <div className='bg-red-500'>
