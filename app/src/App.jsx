@@ -21,6 +21,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import VectorLayer from './components/Layers/VectorLayer'
 import { VITE_MAP } from './vite-env.d'
 import { TOGGLE_LAYER } from './reducers/layersReducer'
+import Controls from './components/Controls/Controls'
+import ScaleControl from './components/Controls/Scale'
+import '../node_modules/ol/ol.css'
+import FullScreenControl from './components/Controls/FullScreenControl'
 // function addMarkers (lonLatArray) {
 //   const iconStyle = new Style({
 //     image: new Icon({
@@ -62,7 +66,7 @@ const App = () => {
     <div className=' align-middle mt-5 mb-0 pb-0'>
       <h1 className=' text-center font-extrabold'>GUGLE MAPAS</h1>
     </div>
-    <div className=' bg-slate-400 flex border-4 mt-5 rounded-xl a'>
+    <div className=' bg-slate-400 flex border-4 mt-5 rounded-xl'>
       <Map center={center} zoom={zoom} projection={projection}>
         <Layers>
           <TileLayer
@@ -74,93 +78,93 @@ const App = () => {
                 }
               })
             }
-            zIndex={0}
-          />
+              zIndex={0}
+            />
 
-          {availableLayers.map((layer) => (
-            <div key={layer.name}>
-              {layer.visible && (
-                <ImageLayer
-                  key={layer.name}
-                  source={ImageWMS(url, layer.sourceName)}
-                />
-              )}
-            </div>
-          ))}
-          <VectorLayer
-            source={source} style={{
-              'fill-color': 'rgba(255, 255, 255, 0.2)',
-              'stroke-color': '#ffcc33',
-              'stroke-width': 2,
-              'circle-radius': 7,
-              'circle-fill-color': '#ffcc33'
-            }} zIndex='1'
-          />
-        </Layers>
-        <Interactions>
-          <DragBoxInteraction
-            onBoxend={(evt) => {
-              console.log(evt.target.getGeometry().getCoordinates())
-            }}
-          />
-          <DrawInteraction
-            drawOptions={{
-              source,
-              type: 'LineString',
-              style: new Style({
-                fill: new Fill({
-                  color: 'rgba(255, 255, 255, 0.2)'
-                }),
-                stroke: new Stroke({
-                  color: 'rgba(0, 0, 0, 0.5)',
-                  lineDash: [10, 10],
-                  width: 2
-                }),
-                image: new CircleStyle({
-                  radius: 5,
-                  stroke: new Stroke({
-                    color: 'rgba(0, 0, 0, 0.7)'
-                  }),
-                  fill: new Fill({
-                    color: 'rgba(255, 255, 255, 0.2)'
-                  })
-                })
-              })
-            }}
-          />
-        </Interactions>
-      </Map>
-      <div className='flex flex-col justify-around p-2 mr-9'>
-        <div className='flex flex-col bg-gray-500 p-3 rounded-lg'>
-          <h6 className='mb-3'>
-            Capas disponibles:
-          </h6>
-          <div className=' overflow-auto h-40'>
             {availableLayers.map((layer) => (
               <div key={layer.name}>
-                <input
+                {layer.visible && (
+                  <ImageLayer
+                    key={layer.name}
+                    source={ImageWMS(url, layer.sourceName)}
+                  />
+                )}
+              </div>
+            ))}
+            <VectorLayer
+              source={source} style={{
+                'fill-color': 'rgba(255, 255, 255, 0.2)',
+                'stroke-color': '#ffcc33',
+                'stroke-width': 2,
+                'circle-radius': 7,
+                'circle-fill-color': '#ffcc33'
+              }} zIndex='1'
+            />
+          </Layers>
+          <Interactions>
+            <DragBoxInteraction
+              onBoxend={(evt) => {
+                console.log(evt.target.getGeometry().getCoordinates())
+              }}
+            />
+            <DrawInteraction
+              drawOptions={{
+                source,
+                type: 'LineString',
+                style: new Style({
+                  fill: new Fill({
+                    color: 'rgba(255, 255, 255, 0.2)'
+                  }),
+                  stroke: new Stroke({
+                    color: 'rgba(0, 0, 0, 0.5)',
+                    lineDash: [10, 10],
+                    width: 2
+                  }),
+                  image: new CircleStyle({
+                    radius: 5,
+                    stroke: new Stroke({
+                      color: 'rgba(0, 0, 0, 0.7)'
+                    }),
+                    fill: new Fill({
+                      color: 'rgba(255, 255, 255, 0.2)'
+                    })
+                  })
+                })
+              }}
+            />
+          </Interactions>
+        </Map>
+        <div className='flex flex-col justify-around p-2 mr-9'>
+          <div className='flex flex-col bg-gray-500 p-3 rounded-lg'>
+            <h6 className='mb-3'>
+              Capas disponibles:
+            </h6>
+            <div className=' overflow-auto h-40'>
+              {availableLayers.map((layer) => (
+                <div key={layer.name}>
+                  <input
             // create a input checkbox for each layer with tailwind classes
-                  className='form-checkbox h-5 w-5 text-blue-600'
-                  type='checkbox'
-                  checked={layer.visible}
-                  onChange={(event) => dispatch({ type: TOGGLE_LAYER, name: layer.name })}
-                />{' '}
-                {layer.name}
-              </div>))}
+                    className='form-checkbox h-5 w-5 text-blue-600'
+                    type='checkbox'
+                    checked={layer.visible}
+                    onChange={(event) => dispatch({ type: TOGGLE_LAYER, name: layer.name })}
+                  />{' '}
+                  {layer.name}
+                </div>))}
+            </div>
+          </div>
+          <div className='bg-gray-500 p-3 rounded-lg'>
+            <h6>
+              Interacciones disponibles:
+            </h6>
+            <select className='text-black min-w-full' value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
+              <option value={availableStates.navigation}>{availableStates.navigation}</option>
+              <option value={availableStates.consultation}>{availableStates.consultation}</option>
+              <option value={availableStates.measurement}>{availableStates.measurement}</option>
+            </select>
           </div>
         </div>
-        <div className='bg-gray-500 p-3 rounded-lg'>
-          <h6  >
-            Interacciones disponibles:
-          </h6>
-          <select className='text-black min-w-full' value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
-            <option value={availableStates.navigation}>{availableStates.navigation}</option>
-            <option value={availableStates.consultation}>{availableStates.consultation}</option>
-            <option value={availableStates.measurement}>{availableStates.measurement}</option>
-          </select>
-        </div>
       </div>
-    </div>
     </>
   )
 }
