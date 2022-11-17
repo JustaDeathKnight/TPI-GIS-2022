@@ -63,14 +63,14 @@ const App = () => {
   const [source, setSource] = useState(new VectorSource())
   return (
     <>
-    <div className=' align-middle mt-5 mb-0 pb-0'>
-      <h1 className=' text-center font-extrabold'>GUGLE MAPAS</h1>
-    </div>
-    <div className=' bg-slate-400 flex border-4 mt-5 rounded-xl'>
-      <Map center={center} zoom={zoom} projection={projection}>
-        <Layers>
-          <TileLayer
-            source={
+      <div className=' align-middle mt-5 mb-0 pb-0'>
+        <h1 className=' text-center font-extrabold'>GUGLE MAPAS</h1>
+      </div>
+      <div className=' flex bg-slate-400 flex border-4 mt-5 rounded-xl'>
+        <Map center={center} zoom={zoom} projection={projection}>
+          <Layers>
+            <TileLayer
+              source={
               new TileWMS({
                 url: 'https://wms.ign.gob.ar/geoserver/ows',
                 params: {
@@ -130,19 +130,19 @@ const App = () => {
                     })
                   })
                 })
-            }}
-          />
-        </Interactions>
-      </Map>
-      <div className='flex flex-col justify-around p-2 mr-9'>
-        <div className='flex flex-col bg-gray-500 p-3 rounded-lg'>
-          <h6 className='mb-3'>
-            Capas disponibles:
-          </h6>
-          <div className=' overflow-auto h-40'>
-            {availableLayers.map((layer) => (
-              <div key={layer.name}>
-                <input
+              }}
+            />
+          </Interactions>
+        </Map>
+        <div className='flex flex-col justify-around p-2 mr-9'>
+          <div className='flex flex-col bg-gray-500 p-3 rounded-lg'>
+            <h6 className='mb-3'>
+              Capas disponibles:
+            </h6>
+            <div className=' overflow-auto h-40'>
+              {availableLayers.map((layer) => (
+                <div key={layer.name}>
+                  <input
             // create a input checkbox for each layer with tailwind classes
                     className='form-checkbox h-5 w-5 text-blue-600'
                     type='checkbox'
@@ -153,11 +153,11 @@ const App = () => {
                 </div>))}
             </div>
           </div>
-          <div>
+          <div className='bg-gray-500 p-3 rounded-lg'>
             <h6>
               Interacciones disponibles:
             </h6>
-            <select value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
+            <select className='text-black min-w-full' value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
               <option value={availableStates.navigation}>{availableStates.navigation}</option>
               <option value={availableStates.consultation}>{availableStates.consultation}</option>
               <option value={availableStates.measurement}>{availableStates.measurement}</option>
