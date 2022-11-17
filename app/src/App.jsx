@@ -164,16 +164,6 @@ const App = () => {
             </select>
           </div>
         </div>
-        <div className='bg-gray-500 p-3 rounded-lg'>
-          <h6  >
-            Interacciones disponibles:
-          </h6>
-          <select className='text-black min-w-full' value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
-            <option value={availableStates.navigation}>{availableStates.navigation}</option>
-            <option value={availableStates.consultation}>{availableStates.consultation}</option>
-            <option value={availableStates.measurement}>{availableStates.measurement}</option>
-          </select>
-        </div>
       </div>
     </>
   )
