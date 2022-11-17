@@ -44,8 +44,8 @@ import FullScreenControl from './components/Controls/FullScreenControl'
 // }
 
 const App = () => {
-  const [center, setCenter] = useState([-59, -27.5])
-  const [zoom, setZoom] = useState(4)
+  const [center, setCenter] = useState([-65, -40])
+  const [zoom, setZoom] = useState(4.2)
 
   const [showLayer1, setShowLayer1] = useState(false)
   const [showLayer2, setShowLayer2] = useState(false)
