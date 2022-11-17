@@ -20,6 +20,7 @@ import { LineString } from 'ol/geom'
 import { useDispatch, useSelector } from 'react-redux'
 import VectorLayer from './components/Layers/VectorLayer'
 import { VITE_MAP } from './vite-env.d'
+import { TOGGLE_LAYER } from './reducers/layersReducer'
 // function addMarkers (lonLatArray) {
 //   const iconStyle = new Style({
 //     image: new Icon({
@@ -48,6 +49,8 @@ const App = () => {
 
   const selectedOption = useSelector(store => store.interaction)
 
+  const availableLayers = useSelector(store => store.layers)
+
   const dispatch = useDispatch()
 
   const [projection, setProjection] = useState('EPSG:4326')
@@ -55,7 +58,7 @@ const App = () => {
   const url = `http://localhost/qgis/qgis_mapserv.fcgi.exe?map=${VITE_MAP}`
   const [source, setSource] = useState(new VectorSource())
   return (
-    <div className='bg-red-500'>
+    <div className='bg-red-500 flex flex-row'>
       <Map center={center} zoom={zoom} projection={projection}>
         <Layers>
           <TileLayer
@@ -70,11 +73,16 @@ const App = () => {
             zIndex={0}
           />
 
-          {showLayer1 && (
-            <ImageLayer
-              source={ImageWMS(url, 'Red_Vial')}
-            />
-          )}
+          {availableLayers.map((layer) => (
+            <div key={layer.name}>
+              {layer.visible && (
+                <ImageLayer
+                  key={layer.name}
+                  source={ImageWMS(url, layer.sourceName)}
+                />
+              )}
+            </div>
+          ))}
           <VectorLayer
             source={source} style={{
               'fill-color': 'rgba(255, 255, 255, 0.2)',
@@ -118,31 +126,33 @@ const App = () => {
           />
         </Interactions>
       </Map>
-      <div>
-        <input
-          type='checkbox'
-          checked={showLayer1}
-          onChange={(event) => setShowLayer1(event.target.checked)}
-        />{' '}
-        Layer 1
+      <div className='flex flex-col'>
+        <div className='flex flex-col'>
+          <h6>
+            Capas disponibles:
+          </h6>
+          <div className=' overflow-auto h-40'>
+            {availableLayers.map((layer) => (
+              <div key={layer.name}>
+                <input
+            // create a input checkbox for each layer with tailwind classes
+                  className='form-checkbox h-5 w-5 text-blue-600'
+                  type='checkbox'
+                  checked={layer.visible}
+                  onChange={(event) => dispatch({ type: TOGGLE_LAYER, name: layer.name })}
+                />{' '}
+                {layer.name}
+              </div>))}
+          </div>
+        </div>
+        <div>
+          <select value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
+            <option value={availableStates.navigation}>{availableStates.navigation}</option>
+            <option value={availableStates.consultation}>{availableStates.consultation}</option>
+            <option value={availableStates.measurement}>{availableStates.measurement}</option>
+          </select>
+        </div>
       </div>
-      <div>
-        <input
-          type='checkbox'
-          checked={showLayer2}
-          onChange={(event) => setShowLayer2(event.target.checked)}
-        />{' '}
-        Layer 2
-      </div>
-      <div>
-        <select value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
-          <option value={availableStates.navigation}>{availableStates.navigation}</option>
-          <option value={availableStates.consultation}>{availableStates.consultation}</option>
-          <option value={availableStates.measurement}>{availableStates.measurement}</option>
-        </select>
-      </div>
-      <div />
-      <div />
     </div>
   )
 }

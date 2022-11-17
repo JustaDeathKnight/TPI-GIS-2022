@@ -5,10 +5,12 @@ import './index.css'
 import { Provider } from 'react-redux'
 import { combineReducers, createStore } from 'redux'
 import { interactionReducer } from './reducers/interactionReducer'
+import { layersReducer } from './reducers/layersReducer'
 
 const reducers = combineReducers(
   {
-    interaction: interactionReducer
+    interaction: interactionReducer,
+    layers: layersReducer
   }
 )
 
