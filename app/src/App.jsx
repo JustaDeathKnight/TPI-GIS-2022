@@ -44,8 +44,8 @@ import FullScreenControl from './components/Controls/FullScreenControl'
 // }
 
 const App = () => {
-  const [center, setCenter] = useState([-65, -40])
-  const [zoom, setZoom] = useState(4.2)
+  const [center, setCenter] = useState([-61, -26])
+  const [zoom, setZoom] = useState(7.5)
 
   const [showLayer1, setShowLayer1] = useState(false)
   const [showLayer2, setShowLayer2] = useState(false)
@@ -63,11 +63,8 @@ const App = () => {
   const [source, setSource] = useState(new VectorSource())
   return (
     <>
-      <div className=' align-middle mt-5 mb-0 pb-0'>
-        <h1 className=' text-center font-extrabold'>GUGLE MAPAS</h1>
-      </div>
-      <div className=' bg-slate-400 flex border-4 mt-5 rounded-xl'>
-        <Map center={center} zoom={zoom} projection={projection}>
+      <div className='flex w-screen h-screen'>
+        <Map className='m-0' center={center} zoom={zoom} projection={projection}>
           <Layers>
             <TileLayer
               source={
@@ -138,12 +135,12 @@ const App = () => {
             <FullScreenControl />
           </Controls>
         </Map>
-        <div className='flex flex-col justify-around p-2 mr-9'>
-          <div className='flex flex-col bg-gray-500 p-3 rounded-lg'>
-            <h6 className='mb-3'>
+        <div className='flex flex-col p-2'>
+          <div className='flex flex-col bg-gray-500 p-3 rounded-md mb-3'>
+            <h6 className='mb-3 bg-slate-600 rounded-md p-2'>
               Capas disponibles:
             </h6>
-            <div className=' overflow-auto h-40'>
+            <div className=' overflow-auto h-60'>
               {availableLayers.map((layer) => (
                 <div key={layer.name}>
                   <input
@@ -158,10 +155,10 @@ const App = () => {
             </div>
           </div>
           <div className='bg-gray-500 p-3 rounded-lg'>
-            <h6>
+            <h6 className='mb-3 bg-slate-600 rounded-md p-2'>
               Interacciones disponibles:
             </h6>
-            <select className='text-black min-w-full' value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
+            <select className='text-black min-w-full p-2 rounded-md' value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
               <option value={availableStates.navigation}>{availableStates.navigation}</option>
               <option value={availableStates.consultation}>{availableStates.consultation}</option>
               <option value={availableStates.measurement}>{availableStates.measurement}</option>
