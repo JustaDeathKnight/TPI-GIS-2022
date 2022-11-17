@@ -58,7 +58,11 @@ const App = () => {
   const url = `http://localhost/qgis/qgis_mapserv.fcgi.exe?map=${VITE_MAP}`
   const [source, setSource] = useState(new VectorSource())
   return (
-    <div className='bg-red-500 flex flex-row'>
+    <>
+    <div className=' align-middle mt-5 mb-0 pb-0'>
+      <h1 className=' text-center'>TITULITO</h1>
+    </div>
+    <div className='bg-black'>
       <Map center={center} zoom={zoom} projection={projection}>
         <Layers>
           <TileLayer
@@ -154,6 +158,7 @@ const App = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
