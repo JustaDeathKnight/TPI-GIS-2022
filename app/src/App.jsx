@@ -62,7 +62,7 @@ const App = () => {
     <div className=' align-middle mt-5 mb-0 pb-0'>
       <h1 className=' text-center'>TITULITO</h1>
     </div>
-    <div className='bg-black'>
+    <div className='bg-black flex text-red-900'>
       <Map center={center} zoom={zoom} projection={projection}>
         <Layers>
           <TileLayer
@@ -130,7 +130,7 @@ const App = () => {
           />
         </Interactions>
       </Map>
-      <div className='flex flex-col'>
+      <div className='flex flex-col justify-around'>
         <div className='flex flex-col'>
           <h6>
             Capas disponibles:
@@ -150,6 +150,9 @@ const App = () => {
           </div>
         </div>
         <div>
+          <h6>
+            Interacciones disponibles:
+          </h6>
           <select value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
             <option value={availableStates.navigation}>{availableStates.navigation}</option>
             <option value={availableStates.consultation}>{availableStates.consultation}</option>
