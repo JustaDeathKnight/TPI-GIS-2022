@@ -62,7 +62,7 @@ const App = () => {
     <div className=' align-middle mt-5 mb-0 pb-0'>
       <h1 className=' text-center font-extrabold'>GUGLE MAPAS</h1>
     </div>
-    <div className=' bg-slate-400 flex border-4 mt-5 rounded-xl'>
+    <div className=' bg-slate-400 flex border-4 mt-5 rounded-xl a'>
       <Map center={center} zoom={zoom} projection={projection}>
         <Layers>
           <TileLayer
