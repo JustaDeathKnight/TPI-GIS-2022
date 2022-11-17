@@ -60,9 +60,9 @@ const App = () => {
   return (
     <>
     <div className=' align-middle mt-5 mb-0 pb-0'>
-      <h1 className=' text-center'>TITULITO</h1>
+      <h1 className=' text-center font-extrabold'>GUGLE MAPAS</h1>
     </div>
-    <div className='bg-black flex text-red-900'>
+    <div className=' bg-slate-400 flex border-4 mt-5 rounded-xl'>
       <Map center={center} zoom={zoom} projection={projection}>
         <Layers>
           <TileLayer
@@ -130,9 +130,9 @@ const App = () => {
           />
         </Interactions>
       </Map>
-      <div className='flex flex-col justify-around'>
-        <div className='flex flex-col'>
-          <h6>
+      <div className='flex flex-col justify-around p-2 mr-9'>
+        <div className='flex flex-col bg-gray-500 p-3 rounded-lg'>
+          <h6 className='mb-3'>
             Capas disponibles:
           </h6>
           <div className=' overflow-auto h-40'>
@@ -149,11 +149,11 @@ const App = () => {
               </div>))}
           </div>
         </div>
-        <div>
-          <h6>
+        <div className='bg-gray-500 p-3 rounded-lg'>
+          <h6  >
             Interacciones disponibles:
           </h6>
-          <select value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
+          <select className='text-black min-w-full' value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
             <option value={availableStates.navigation}>{availableStates.navigation}</option>
             <option value={availableStates.consultation}>{availableStates.consultation}</option>
             <option value={availableStates.measurement}>{availableStates.measurement}</option>
