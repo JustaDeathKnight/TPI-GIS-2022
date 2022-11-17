@@ -133,6 +133,10 @@ const App = () => {
               }}
             />
           </Interactions>
+          <Controls>
+            <ScaleControl />
+            <FullScreenControl />
+          </Controls>
         </Map>
         <div className='flex flex-col justify-around p-2 mr-9'>
           <div className='flex flex-col bg-gray-500 p-3 rounded-lg'>
