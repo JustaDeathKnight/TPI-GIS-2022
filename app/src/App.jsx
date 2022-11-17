@@ -63,14 +63,14 @@ const App = () => {
   const [source, setSource] = useState(new VectorSource())
   return (
     <>
-    <div className=' align-middle mt-5 mb-0 pb-0'>
-      <h1 className=' text-center font-extrabold'>GUGLE MAPAS</h1>
-    </div>
-    <div className=' bg-slate-400 flex border-4 mt-5 rounded-xl'>
-      <Map center={center} zoom={zoom} projection={projection}>
-        <Layers>
-          <TileLayer
-            source={
+      <div className=' align-middle mt-5 mb-0 pb-0'>
+        <h1 className=' text-center font-extrabold'>GUGLE MAPAS</h1>
+      </div>
+      <div className=' bg-slate-400 flex border-4 mt-5 rounded-xl'>
+        <Map center={center} zoom={zoom} projection={projection}>
+          <Layers>
+            <TileLayer
+              source={
               new TileWMS({
                 url: 'https://wms.ign.gob.ar/geoserver/ows',
                 params: {
