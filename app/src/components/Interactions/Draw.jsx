@@ -35,6 +35,8 @@ const DrawInteraction = ({ drawOptions, onDrawStart, onDrawEnd }) => {
 
   const [draw, setDraw] = useState(null)
 
+  const [overlay, setOverlay] = useState(null)
+
   function createMeasureTooltip () {
     if (measureTooltipElement) {
       measureTooltipElement.parentNode.removeChild(measureTooltipElement)
@@ -49,6 +51,7 @@ const DrawInteraction = ({ drawOptions, onDrawStart, onDrawEnd }) => {
       insertFirst: false
     })
     map.addOverlay(measureTooltip)
+    setOverlay(measureTooltip)
   }
 
   useEffect(() => {
@@ -96,12 +99,13 @@ const DrawInteraction = ({ drawOptions, onDrawStart, onDrawEnd }) => {
   useEffect(() => {
     if (!map) return
 
+    console.log(selectedOption)
+
     if (selectedOption === availableStates.measurement) {
       map.addInteraction(draw)
-      map.on('click', getPointCoordinates)
     } else {
       map.removeInteraction(draw)
-      map.un('click', getPointCoordinates)
+      map.removeOverlay(overlay)
     }
   }, [selectedOption])
 

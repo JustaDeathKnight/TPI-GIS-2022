@@ -12,6 +12,7 @@ const ScaleControl = () => {
       units: 'metric',
       bar: true,
       steps: parseInt(4, 10),
+      text: true,
       minWidth: 140
     })
 

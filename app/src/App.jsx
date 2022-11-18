@@ -16,7 +16,7 @@ import ImageWMS from './components/Source/ImageWMS'
 import DrawInteraction from './components/Interactions/Draw'
 import CircleStyle from 'ol/style/Circle'
 import VectorSource from 'ol/source/Vector'
-import { LineString } from 'ol/geom'
+import { LineString, MultiPolygon } from 'ol/geom'
 import { useDispatch, useSelector } from 'react-redux'
 import VectorLayer from './components/Layers/VectorLayer'
 import { VITE_MAP } from './vite-env.d'
@@ -25,6 +25,8 @@ import Controls from './components/Controls/Controls'
 import ScaleControl from './components/Controls/Scale'
 import '../node_modules/ol/ol.css'
 import FullScreenControl from './components/Controls/FullScreenControl'
+import Leyend from './components/Leyend/Leyend'
+import GeoJSON from 'ol/format/GeoJSON'
 // function addMarkers (lonLatArray) {
 //   const iconStyle = new Style({
 //     image: new Icon({
@@ -43,23 +45,23 @@ import FullScreenControl from './components/Controls/FullScreenControl'
 //   return features
 // }
 
+const url = `http://localhost/qgis/qgis_mapserv.fcgi.exe?map=${VITE_MAP}`
+
 const App = () => {
   const [center, setCenter] = useState([-61, -26])
   const [zoom, setZoom] = useState(7.5)
 
-  const [showLayer1, setShowLayer1] = useState(false)
-  const [showLayer2, setShowLayer2] = useState(false)
-  const [showMarker, setShowMarker] = useState(false)
+  const consultLayer = useSelector(state => state.consultLayer)
 
   const selectedOption = useSelector(store => store.interaction)
 
   const availableLayers = useSelector(store => store.layers)
 
+  console.log(consultLayer)
+
   const dispatch = useDispatch()
 
   const [projection, setProjection] = useState('EPSG:4326')
-
-  const url = `http://localhost/qgis/qgis_mapserv.fcgi.exe?map=${VITE_MAP}`
   const [source, setSource] = useState(new VectorSource())
   return (
     <>
@@ -97,13 +99,21 @@ const App = () => {
                 'circle-fill-color': '#ffcc33'
               }} zIndex='1'
             />
+            {consultLayer?.type &&
+              <VectorLayer
+                source={new VectorSource({ features: new GeoJSON().readFeatures(consultLayer) })} style={new Style({
+                  stroke: new Stroke({
+                    color: 'blue',
+                    width: 1
+                  }),
+                  fill: new Fill({
+                    color: 'rgba(0, 0, 255, 0.1)'
+                  })
+                })}
+              />}
           </Layers>
           <Interactions>
-            <DragBoxInteraction
-              onBoxend={(evt) => {
-                console.log(evt.target.getGeometry().getCoordinates())
-              }}
-            />
+            <DragBoxInteraction />
             <DrawInteraction
               drawOptions={{
                 source,
@@ -135,8 +145,8 @@ const App = () => {
             <FullScreenControl />
           </Controls>
         </Map>
-        <div className='flex flex-col p-2'>
-          <div className='flex flex-col bg-gray-500 p-3 rounded-md mb-3'>
+        <div className='flex flex-col p-2 gap-3'>
+          <div className='flex flex-col bg-gray-500 p-3 rounded-md'>
             <h6 className='mb-3 bg-slate-600 rounded-md p-2'>
               Capas disponibles:
             </h6>
@@ -154,8 +164,8 @@ const App = () => {
                 </div>))}
             </div>
           </div>
-          <div className='bg-gray-500 p-3 rounded-lg'>
-            <h6 className='mb-3 bg-slate-600 rounded-md p-2'>
+          <div className='bg-gray-500 p-3 rounded-lg gap-3 flex flex-col'>
+            <h6 className='bg-slate-600 rounded-md p-2'>
               Interacciones disponibles:
             </h6>
             <select className='text-black min-w-full p-2 rounded-md' value={selectedOption} onChange={(e) => dispatch({ type: SET_INTERACTION_OPTION, payload: e.currentTarget.value })}>
@@ -164,6 +174,7 @@ const App = () => {
               <option value={availableStates.measurement}>{availableStates.measurement}</option>
             </select>
           </div>
+          <Leyend url={url} />
         </div>
       </div>
     </>
