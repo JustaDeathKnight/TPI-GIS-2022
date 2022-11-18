@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
     }
 );
 
-const user = 'postgres';
-const password = 'root';
+const user = 'admingis';
+const password = 'admingis';
 const host = 'localhost';
 const port = 5432;
 const database = 'tpigis';
