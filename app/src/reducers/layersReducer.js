@@ -3,12 +3,14 @@ const layersString = 'Provincias,Obra_de_Comunicación,Obra_Portuaria,Otras_Edif
 export const availableLayers = layersString.split(',').map((layer) => {
   return {
     sourceName: layer,
-    name: layer.replace(/_/g, ' '),
+    name: layer.replace(/_/g, ' ').replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase()),
     visible: false
   }
-})
+}).sort((a, b) => a.name.localeCompare(b.name))
 
 export const TOGGLE_LAYER = 'TOGGLE_LAYER'
+
+export const CLEAR_ALL_LAYERS = 'CLEAR_ALL_LAYERS'
 
 export const layersReducer = (state = availableLayers, action) => {
   switch (action.type) {
@@ -21,6 +23,13 @@ export const layersReducer = (state = availableLayers, action) => {
           }
         }
         return layer
+      })
+    case CLEAR_ALL_LAYERS:
+      return state.map((layer) => {
+        return {
+          ...layer,
+          visible: false
+        }
       })
     default:
       return state

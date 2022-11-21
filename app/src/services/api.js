@@ -8,3 +8,18 @@ export const getIntersectedFeatures = async (layers, coords) => {
   })
   return response.data
 }
+
+export const postMarker = async (marker) => {
+  const response = await axios.post(`${VITE_API_URL}/addMarker`, marker)
+  return response.data
+}
+
+export const getMarkers = async () => {
+  const response = await axios.get(`${VITE_API_URL}/markers`)
+  return response.data
+}
+
+export const removeMarkers = async (coords) => {
+  const response = await axios.post(`${VITE_API_URL}/removeMarkers`, { coords })
+  return response.data
+}

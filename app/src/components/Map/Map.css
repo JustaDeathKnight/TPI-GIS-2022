@@ -1,6 +1,6 @@
 .ol-map {
-    min-width: 1200px;
-    height: 100vp;
+    min-width: calc(100vw - 20vw);
+    height: 100vh;
     width: "100%";
     margin: 0;
 }

@@ -25,6 +25,105 @@ const host = 'localhost';
 const port = 5432;
 const database = 'tpigis';
 
+app.post('/addMarker', async (req, res) => {
+    console.log(req.body);
+    const {name, description} = req.body.properties;
+    const {coordinates} = req.body.geometry;
+    const pool = new Pool({
+        user: user,
+        password: password,
+        host: host,
+        port: port,
+        database: database
+    });
+    const client = await pool.connect();
+    try {
+        await client.query('BEGIN');
+        const queryText = 'INSERT INTO "Marcadores" ("Nombre", "Descripcion", geometry) VALUES ($1, $2, ST_SetSRID(ST_MakePoint($3, $4), 4326)) RETURNING *';
+        const values = [name, description, coordinates[0], coordinates[1]];
+        const {rows} = await client
+            .query(queryText, values);
+        await client.query('COMMIT');
+        res.status(201).send(rows[0]);
+    } catch (e) {
+        await client.query('ROLLBACK');
+        throw e;
+    } finally {
+        client.release();
+    }
+});
+
+app.post('/removeMarkers', async (req, res) => {
+    const { coords } = req.body;
+    console.log(req.body)
+    if (!coords) {
+        res.status(400).send('Bad request');
+    }
+    let wkt = 'POLYGON((';
+    for (var i = 0; i < coords[0].length - 1; i++) {
+        wkt += coords[0][i][0] + ' ' + coords[0][i][1] + ',';
+    }
+    wkt += coords[0][0][0] + ' ' + coords[0][0][1] + '))'
+    const pool = new Pool({
+        user: user,
+        password: password,
+        host: host,
+        port: port,
+        database: database
+    });
+    const client = await pool.connect();
+    try {
+        await client.query('BEGIN');
+        const queryText = 'DELETE FROM "Marcadores" WHERE ST_Intersects(geometry, ST_GeomFromText($1, 4326))';
+        const values = [wkt];
+        const {rows} = await client
+            .query(queryText, values);
+        await client.query('COMMIT');
+        res.status(201).send(rows[0]);
+    } catch (e) {
+        await client.query('ROLLBACK');
+        throw e;
+    } finally {
+        client.release();
+    }
+});
+ 
+
+app.get('/markers', async (req, res) => {
+    const pool = new Pool({
+        user: user,
+        password: password,
+        host: host,
+        port: port,
+        database: database
+        });
+        const client = await pool.connect();
+        try {
+            await client.query('BEGIN');
+            const queryText = 'SELECT *, ST_AsGeoJSON("Marcadores".geometry) as features FROM "Marcadores"';
+            const {rows} = await client
+                .query(queryText);
+            await client.query('COMMIT');
+            const features = rows?.map((row) => {
+                const { features, geometry, ...properties } = row;
+                return {
+                    type: 'Feature',
+                    geometry: {
+                ...JSON.parse(features),
+                    },
+                    properties
+                };
+            });
+            console.log(features);
+            res.status(200).send({type: 'FeatureCollection', features });
+        } catch (e) {
+            await client.query('ROLLBACK');
+            throw e;
+        } finally {
+            client.release();
+        }
+    });
+
 app.post('/intersect', async (req, res) => {
     const { layers, coords } = req.body;
     const layersNames = [] = layers.map((layer) => layer.sourceName);
@@ -40,8 +139,16 @@ app.post('/intersect', async (req, res) => {
         }
         wkt += coords[0][0][0] + ' ' + coords[0][0][1] + '))'
     }
-    const initialQuery = layersNames.reduce((acc, layer) => acc + layer, 'SELECT * FROM')
-    const query = 'SELECT ST_AsGeoJSON(ST_AsText(geometry)) as features FROM ' + '"Provincias"' + ' WHERE ST_Intersects(ST_GeomFromText(\'' + wkt + '\', 4326), geometry)';
+    if (layersNames.length>0){
+    const initialQuery = layersNames.reduce((acc, layer, index) => {
+        if (index === 0) {
+           return acc + '"' + layer + '"'
+        } 
+        return acc + " JOIN " + '"' + layer + '"' + ' ON ST_Intersects("' + layer + '".geometry, "' + layersNames[index-1] + '".geometry) '
+    }, 
+    'SELECT *, ST_AsGeoJSON("'+ layersNames[0] + '".geometry) as features FROM '
+    )
+    const query = initialQuery + ' WHERE ST_Intersects(ST_GeomFromText(\'' + wkt + '\', 4326), "' + layersNames[0]+'".geometry)';
     console.log(query);
     const pg = new Pool({ 
         user
@@ -55,9 +162,19 @@ app.post('/intersect', async (req, res) => {
             res.status(500).send(err
             );
         }
-        const geometry = JSON.parse(results.rows[0].features)
-        res.status(200).send({type: 'FeatureCollection', features: [{type: 'Feature',geometry}]});
+        const features = results?.rows?.map((row) => {
+            const { features, geometry, ...properties } = row;
+            return {
+                type: 'Feature',
+                geometry: {
+            ...JSON.parse(features),
+            properties,
+                }
+            };
+        });
+        res.status(200).send({type: 'FeatureCollection', features });
     });
+}
 
 });
 

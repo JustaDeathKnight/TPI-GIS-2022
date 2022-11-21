@@ -1,6 +1,6 @@
 
 import MapContext from '../Map/MapContext'
-import { useContext, useEffect, useReducer, useState } from 'react'
+import { useContext, useEffect, useReducer, useState, useMemo } from 'react'
 import { DragBox } from 'ol/interaction'
 import { Style, Icon, Stroke } from 'ol/style'
 import { always } from 'ol/events/condition'
@@ -20,13 +20,13 @@ const DragBoxInteraction = ({ dragBoxOptions, onBoxend }) => {
   const dispatch = useDispatch()
 
   const handleIntersectedFeatures = (interactionCoordinates) => {
-    console.log(interactionCoordinates, visibleLayers)
     getIntersectedFeatures(visibleLayers, interactionCoordinates).then((response) => {
+      console.log(response)
       dispatch({ type: 'SET_CONSULT_LAYER', payload: response })
     })
   }
 
-  const getPointCoordinates = (evt) => {
+  const getPointCoordinates = function (evt) {
     const interactionCoordinates = evt.coordinate
     handleIntersectedFeatures(interactionCoordinates)
   }
@@ -44,16 +44,16 @@ const DragBoxInteraction = ({ dragBoxOptions, onBoxend }) => {
       condition: always
     })
 
-    dragBox.on('boxend', getBoxCoordinates)
-
     setDragBox(dragBox)
 
-    return () => map.removeInteraction(dragBox)
+    return () => {
+      map.removeInteraction(dragBox)
+    }
   }, [map])
 
   useEffect(() => {
-    if (!map) return
-
+    if (visibleLayers.length <= 0) return
+    dragBox.on('boxend', getBoxCoordinates)
     if (selectedOption === availableStates.consultation) {
       map.addInteraction(dragBox)
       map.on('click', getPointCoordinates)
@@ -61,7 +61,11 @@ const DragBoxInteraction = ({ dragBoxOptions, onBoxend }) => {
       map.removeInteraction(dragBox)
       map.un('click', getPointCoordinates)
     }
-  }, [selectedOption])
+    return () => {
+      dragBox.un('boxend', getBoxCoordinates)
+      map.un('click', getPointCoordinates)
+    }
+  }, [visibleLayers])
 
   return null
 }

@@ -33,7 +33,7 @@ const Leyend = ({ url }) => {
           <h6 className='bg-slate-600 rounded-md p-2'>
             Leyenda:
           </h6>
-          <img className=' max-h-44' src={leyendSource} />
+          <img className=' max-h-72' src={leyendSource} />
         </div>}
     </>
   )

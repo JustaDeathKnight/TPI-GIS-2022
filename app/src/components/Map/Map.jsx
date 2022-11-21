@@ -14,7 +14,9 @@ const Map = ({ children, zoom, center, projection }) => {
     }
 
     const mapObject = new ol.Map(options)
+
     mapObject.setTarget(mapRef.current)
+
     setMap(mapObject)
 
     return () => mapObject.setTarget(undefined)
