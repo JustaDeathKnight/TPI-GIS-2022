@@ -22,11 +22,9 @@ const formatLength = function (line) {
 const DrawInteraction = ({ drawOptions }) => {
   const selectedOption = useSelector(store => store.interaction)
 
-  const { map } = useContext(MapContext)
+  const map = useSelector(store => store.map)
 
   const [draw, setDraw] = useState(null)
-
-  const [overlay, setOverlay] = useState(null)
 
   let measureTooltipElement
 
@@ -46,7 +44,6 @@ const DrawInteraction = ({ drawOptions }) => {
       insertFirst: false
     })
     map.addOverlay(measureTooltip)
-    setOverlay(measureTooltip)
   }
 
   useEffect(() => {
@@ -89,7 +86,9 @@ const DrawInteraction = ({ drawOptions }) => {
 
     setDraw(draw)
 
-    return () => map.removeInteraction(draw)
+    return () => {
+      map.removeInteraction(draw)
+    }
   }, [map])
 
   useEffect(() => {
@@ -99,7 +98,6 @@ const DrawInteraction = ({ drawOptions }) => {
       map.addInteraction(draw)
     } else {
       map.removeInteraction(draw)
-      map.removeOverlay(overlay)
     }
   }, [selectedOption])
 

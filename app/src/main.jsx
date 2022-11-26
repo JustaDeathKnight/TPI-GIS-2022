@@ -8,9 +8,11 @@ import { combineReducers, createStore } from 'redux'
 import { interactionReducer } from './reducers/interactionReducer'
 import { layersReducer } from './reducers/layersReducer'
 import { consultLayerReducer } from './reducers/consultLayerReducer'
+import { mapReducer } from './reducers/mapReducer'
 
 const reducers = combineReducers(
   {
+    map: mapReducer,
     consultLayer: consultLayerReducer,
     interaction: interactionReducer,
     layers: layersReducer

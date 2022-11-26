@@ -12,6 +12,8 @@ export const TOGGLE_LAYER = 'TOGGLE_LAYER'
 
 export const CLEAR_ALL_LAYERS = 'CLEAR_ALL_LAYERS'
 
+export const FILTER_LAYERS = 'FILTER_LAYERS'
+
 export const layersReducer = (state = availableLayers, action) => {
   switch (action.type) {
     case TOGGLE_LAYER:
