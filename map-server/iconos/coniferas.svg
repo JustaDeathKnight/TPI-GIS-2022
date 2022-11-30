@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="37.670803mm"
+   height="40.095455mm"
+   viewBox="0 0 37.670803 40.095455"
+   version="1.1"
+   id="svg23828"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="coniferas.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview23830"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.46769781"
+     inkscape:cx="245.88526"
+     inkscape:cy="98.354106"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs23825" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-40.114911,-122.83025)">
+    <g
+       id="g25603"
+       transform="matrix(0.64908794,0,0,0.53744359,14.076806,56.815921)">
+      <circle
+         style="fill:#007c00;stroke:#00c80b;stroke-width:0"
+         id="path25511"
+         cx="81.180008"
+         cy="190.92856"
+         r="3.1114285" />
+      <circle
+         style="fill:#007c00;stroke:#00c80b;stroke-width:0"
+         id="path25511-0"
+         cx="95.040001"
+         cy="191.21143"
+         r="3.1114285" />
+      <rect
+         style="fill:#007c00;stroke:#00c80b;stroke-width:0"
+         id="rect25455"
+         width="11.398331"
+         height="59.962269"
+         x="6.4583621"
+         y="141.9686"
+         transform="matrix(0.87766311,-0.47927806,0.37880545,0.92547633,0,0)" />
+      <rect
+         style="fill:#007c00;stroke:#00c80b;stroke-width:0"
+         id="rect25455-9"
+         width="7.0660787"
+         height="54.594292"
+         x="113.29565"
+         y="-101.52783"
+         transform="matrix(0.67656104,0.73638656,0.35986692,-0.93300364,0,0)" />
+      <ellipse
+         style="fill:#007c00;stroke:#00c80b;stroke-width:0"
+         id="path25509"
+         cx="64.774284"
+         cy="190.36285"
+         rx="6.5057139"
+         ry="7.0714288" />
+    </g>
+  </g>
+</svg>
