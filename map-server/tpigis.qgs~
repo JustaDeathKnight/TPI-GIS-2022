@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="3.28.1-Firenze" saveUser="Gowther" saveUserFull="Ariel Acevedo" saveDateTime="2022-11-30T19:24:37">
+<qgis projectname="" version="3.28.1-Firenze" saveUser="Gowther" saveUserFull="Ariel Acevedo" saveDateTime="2022-11-30T19:24:05">
   <homePath path=""/>
   <title></title>
   <transaction mode="Disabled"/>
@@ -141,7 +141,7 @@
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer legend_exp="" expanded="1" patch_size="-1,-1" legend_split_behavior="0" id="Curso_de_Agua_Hid_55677e99_2d8a_4e65_8c73_0739fbc41bcd" source="dbname='tpigis' host=localhost port=5432 user='admingis' sslmode=disable key='tid' srid=4326 type=MultiCurve checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;Curso_de_Agua_Hid&quot; (geometry)" name="Curso_de_Agua_Hid" checked="Qt::Checked" providerKey="postgres">
+    <layer-tree-layer legend_exp="" expanded="1" patch_size="-1,-1" legend_split_behavior="0" id="Curso_de_Agua_Hid_55677e99_2d8a_4e65_8c73_0739fbc41bcd" source="dbname='tpigis' host=localhost port=5432 user='admingis' sslmode=disable key='tid' srid=4326 type=MultiCurve checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;Curso_de_Agua_Hid&quot; (geometry)" name="Curso_de_Agua_Hid" checked="Qt::Unchecked" providerKey="postgres">
       <customproperties>
         <Option/>
       </customproperties>
@@ -166,7 +166,7 @@
         <Option/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer legend_exp="" expanded="0" patch_size="-1,-1" legend_split_behavior="0" id="Red_Vial_61a509bf_df3f_43cd_8d5a_1c61e2e443d9" source="dbname='tpigis' host=localhost port=5432 user='admingis' sslmode=disable key='tid' srid=4326 type=MultiCurve checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;Red_Vial&quot; (geometry)" name="Red_Vial" checked="Qt::Unchecked" providerKey="postgres">
+    <layer-tree-layer legend_exp="" expanded="1" patch_size="-1,-1" legend_split_behavior="0" id="Red_Vial_61a509bf_df3f_43cd_8d5a_1c61e2e443d9" source="dbname='tpigis' host=localhost port=5432 user='admingis' sslmode=disable key='tid' srid=4326 type=MultiCurve checkPrimaryKeyUnicity='0' table=&quot;public&quot;.&quot;Red_Vial&quot; (geometry)" name="Red_Vial" checked="Qt::Unchecked" providerKey="postgres">
       <customproperties>
         <Option/>
       </customproperties>
@@ -508,9 +508,9 @@
         <legendlayerfile isInOverview="0" visible="0" layerid="Edificio_de_Seguridad_IPS_fac8ffd8_1e87_47ef_92cb_ff68c068dc05"/>
       </filegroup>
     </legendlayer>
-    <legendlayer showFeatureCount="0" drawingOrder="-1" open="true" checked="Qt::Checked" name="Curso_de_Agua_Hid">
+    <legendlayer showFeatureCount="0" drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Curso_de_Agua_Hid">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="Curso_de_Agua_Hid_55677e99_2d8a_4e65_8c73_0739fbc41bcd"/>
+        <legendlayerfile isInOverview="0" visible="0" layerid="Curso_de_Agua_Hid_55677e99_2d8a_4e65_8c73_0739fbc41bcd"/>
       </filegroup>
     </legendlayer>
     <legendlayer showFeatureCount="0" drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Curvas_de_Nivel">
@@ -533,8 +533,8 @@
         <legendlayerfile isInOverview="0" visible="0" layerid="Muro_Embalse_910dd4c3_943d_4420_85b7_b88ff02d7ad3"/>
       </filegroup>
     </legendlayer>
-    <legendlayer showFeatureCount="0" drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Red_Vial">
-      <filegroup open="false" hidden="false">
+    <legendlayer showFeatureCount="0" drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Red_Vial">
+      <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" visible="0" layerid="Red_Vial_61a509bf_df3f_43cd_8d5a_1c61e2e443d9"/>
       </filegroup>
     </legendlayer>
