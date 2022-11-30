@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="36.338654mm"
+   height="210.22139mm"
+   viewBox="0 0 36.338654 210.22139"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="corrientes_de_agua_perenne.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="false"
+     inkscape:zoom="0.46769781"
+     inkscape:cx="-89.801575"
+     inkscape:cy="496.0468"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-86.832616,-43.385598)">
+    <path
+       id="path460"
+       style="mix-blend-mode:normal;fill:#009fd7;fill-opacity:1;stroke:#0e56c2;stroke-width:0.596902;stroke-dasharray:none;stroke-opacity:1"
+       d="m 95.761599,43.721217 19.830421,3.683244 c -4.43604,10.902318 -12.80514,36.290271 -7.00672,54.766799 -2.01113,-2.832445 13.06949,39.27101 14.2819,54.66078 0.28769,52.49653 -10.61561,72.24636 -6.59889,94.96712 l -18.49533,1.49468 c -7.2946,-13.47863 12.57088,-72.56154 6.44479,-95.88005 L 87.136194,99.585659 c 1.708038,-14.449577 -0.4787,-36.375252 8.625405,-55.864442 z"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:transform-center-x="8.9036408"
+       inkscape:transform-center-y="4.9823687" />
+  </g>
+</svg>
