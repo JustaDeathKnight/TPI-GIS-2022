@@ -12,7 +12,7 @@ const Leyend = ({ url }) => {
   useEffect(() => {
     if (visibleLayers.length > 0) {
       const wmsSource = new ImageWMS({
-        url: url + '&TRANSPARENT=TRUE&ITEMFONTCOLOR=0x213547&WIDTH=3000&HEIGHT=3000',
+        url: url + '&TRANSPARENT=TRUE&ITEMFONTCOLOR=0x213547',
         params: {
           LAYERS: visibleLayers.map(layer => layer.sourceName).join(','),
           FORMAT: 'image/png'
@@ -33,7 +33,7 @@ const Leyend = ({ url }) => {
           <h6 className='bg-slate-600 rounded-md p-2'>
             Leyenda:
           </h6>
-          <img className='' src={leyendSource} />
+          <img className='sm:max-h-[50vh]' src={leyendSource} />
         </div>}
     </>
   )

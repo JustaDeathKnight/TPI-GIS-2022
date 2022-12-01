@@ -148,8 +148,6 @@ const App = () => {
     }))
   }
 
-  console.log(consultLayer)
-
   const handleFilter = (e) => {
     setFilter(e.currentTarget.value)
   }
@@ -157,41 +155,41 @@ const App = () => {
   return (
     <>
       <div className='flex sm:flex-row flex-col w-screen min-h-screen bg-slate-800'>
-        <div className='bg-gray-500 p-1 gap-3 flex sm:flex-col flex-row sm:justify-start justify-center'>
-          <div className='min-w-max flex sm:flex-col flex-row gap-2 bg-slate-600 rounded-md p-2'>
-            <button name='navigation' className={(selectedOption === 'navigation') ? 'relative bg-slate-300' : 'relative'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleChangeInteraction}>
-              <img className='sm:h-6 h-4' src='https://cdn-icons-png.flaticon.com/512/1828/1828166.png ' />
-              <div className={isShowTooltip.navigation ? 'absolute bg-gray-300 opacity-90 rounded-md p-2 top-0 -right-16 z-50' : 'hidden'}>
+        <div className='bg-gray-500 p-1 flex sm:flex-col flex-row sm:justify-start justify-center'>
+          <div className='min-w-max flex sm:flex-col flex-row gap-2 bg-slate-600 rounded-md p-2 text-xs'>
+            <button name='navigation' className={(selectedOption === 'navigation') ? 'relative bg-slate-300 sm:p-3 p-2 rounded-md' : 'relative sm:p-3 p-2 rounded-md'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleChangeInteraction}>
+              <img className='h-6' src='https://cdn-icons-png.flaticon.com/512/1828/1828166.png ' />
+              <div className={isShowTooltip.navigation ? 'absolute bg-gray-300 opacity-90 rounded-md p-2 sm:top-0 sm:-right-16 z-50' : 'hidden'}>
                 <p>Navegar</p>
               </div>
             </button>
-            <button name='consultation' className={(selectedOption === 'consultation') ? 'relative bg-slate-300' : 'relative'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleChangeInteraction}>
-              <img className='sm:h-6 h-4' src='https://cdn-icons-png.flaticon.com/512/103/103091.png ' />
-              <div className={isShowTooltip.consultation ? 'absolute bg-gray-300 opacity-90 rounded-md p-2 top-0 -right-20 z-50' : 'hidden'}>
+            <button name='consultation' className={(selectedOption === 'consultation') ? 'relative bg-slate-300 sm:p-3 p-2 rounded-md' : 'relative sm:p-3 p-2 rounded-md'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleChangeInteraction}>
+              <img className='h-6' src='https://cdn-icons-png.flaticon.com/512/103/103091.png ' />
+              <div className={isShowTooltip.consultation ? 'absolute bg-gray-300 opacity-90 rounded-md p-2 sm:top-0 sm:-right-16 z-50' : 'hidden'}>
                 <p>Consultar</p>
               </div>
             </button>
-            <button name='measurement' className={(selectedOption === 'measurement') ? 'relative bg-slate-300' : 'relative'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleChangeInteraction}>
-              <img className='sm:h-6 h-4' src='https://cdn-icons-png.flaticon.com/128/570/570968.png' />
-              <div className={isShowTooltip.measurement ? 'absolute whitespace-nowrap bg-gray-300 opacity-90 rounded-md p-2 top-0 -right-32 z-50' : 'hidden'}>
+            <button name='measurement' className={(selectedOption === 'measurement') ? 'relative bg-slate-300 sm:p-3 p-2 rounded-md' : 'relative sm:p-3 p-2 rounded-md'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleChangeInteraction}>
+              <img className='h-6' src='https://cdn-icons-png.flaticon.com/128/570/570968.png' />
+              <div className={isShowTooltip.measurement ? 'absolute whitespace-nowrap bg-gray-300 opacity-90 rounded-md p-2 sm:top-0 sm:-right-20 z-50' : 'hidden'}>
                 <p>Medir Distancias</p>
               </div>
             </button>
-            <button name='addMarker' className={(selectedOption === 'addMarker') ? 'relative bg-slate-300' : 'relative'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleChangeInteraction}>
-              <img className='sm:h-6 h-4' src='https://cdn-icons-png.flaticon.com/512/5055/5055641.png' />
-              <div className={isShowTooltip.addMarker ? 'absolute whitespace-nowrap bg-gray-300 opacity-90 rounded-md p-2 top-0 -right-32 z-50' : 'hidden'}>
+            <button name='addMarker' className={(selectedOption === 'addMarker') ? 'relative bg-slate-300 sm:p-3 p-2 rounded-md' : 'relative sm:p-3 p-2 rounded-md'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleChangeInteraction}>
+              <img className='h-6' src='https://cdn-icons-png.flaticon.com/512/5055/5055641.png' />
+              <div className={isShowTooltip.addMarker ? 'absolute whitespace-nowrap bg-gray-300 opacity-90 rounded-md p-2 sm:top-0 sm:-right-24 z-50' : 'hidden'}>
                 <p>Añadir Marcador</p>
               </div>
             </button>
-            <button name='removeMarker' className={(selectedOption === 'removeMarker') ? 'relative bg-slate-300' : 'relative'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleChangeInteraction}>
-              <img className='sm:h-6 h-4' src='   https://cdn-icons-png.flaticon.com/512/5055/5055644.png ' />
-              <div className={isShowTooltip.removeMarker ? 'absolute whitespace-nowrap bg-gray-300 opacity-90 rounded-md p-2 top-0 -right-40 z-50' : 'hidden'}>
+            <button name='removeMarker' className={(selectedOption === 'removeMarker') ? 'relative bg-slate-300 sm:p-3 p-2 rounded-md' : 'relative sm:p-3 p-2 rounded-md'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleChangeInteraction}>
+              <img className='h-6' src='   https://cdn-icons-png.flaticon.com/512/5055/5055644.png ' />
+              <div className={isShowTooltip.removeMarker ? 'absolute whitespace-nowrap bg-gray-300 opacity-90 rounded-md p-2 sm:top-0 sm:-right-32 z-50' : 'hidden'}>
                 <p>Eliminar Marcadores</p>
               </div>
             </button>
-            <button name='clear' className='relative' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleReset}>
-              <img className='sm:h-6 h-4' src='https://cdn-icons-png.flaticon.com/512/1198/1198941.png' />
-              <div className={isShowTooltip.clear ? 'absolute bg-gray-300 opacity-90 rounded-md p-2 top-0 -right-16 z-50' : 'hidden'}>
+            <button name='clear' className='relative sm:p-3 p-2 rounded-md' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleReset}>
+              <img className='h-6' src='https://cdn-icons-png.flaticon.com/512/1198/1198941.png' />
+              <div className={isShowTooltip.clear ? 'absolute bg-gray-300 opacity-90 rounded-md p-2 sm:top-0 sm:-right-16 z-50' : 'hidden'}>
                 <p>Limpiar</p>
               </div>
             </button>
@@ -276,13 +274,13 @@ const App = () => {
             <FullScreenControl />
           </Controls>
         </Map>
-        <div className='flex flex-col p-2 gap-3'>
+        <div className='flex flex-col px-2 py-4 gap-4'>
           <div className='flex flex-col bg-gray-500 p-3 rounded-md sm:h-auto h-full'>
             <h6 className='mb-3 bg-slate-600 rounded-md p-2'>
               Capas disponibles:
             </h6>
             <input placeholder='Busca una capa...' className='mb-2 rounded-md px-2 py-1' onChange={handleFilter} />
-            <div className=' overflow-auto sm:h-80 h-40'>
+            <div className=' overflow-auto sm:h-60 h-40'>
               {filterLayers?.map((layer) => (
                 <div key={layer.name}>
                   <input

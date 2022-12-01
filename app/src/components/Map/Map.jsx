@@ -14,7 +14,7 @@ const Map = ({ children }) => {
   }, [])
 
   return (
-    <div ref={mapRef} id='ol-map' className='ol-map sm:min-w-[calc(100vw - 20vw)] sm:h-screen sm:w-full w-screen h-[60vh] min-h-[60vh]'>
+    <div ref={mapRef} id='ol-map' className='ol-map sm:min-w-[calc(100vw - 20vw)] sm:h-screen sm:w-full w-screen h-[50vh] min-h-[50vh]'>
       {children}
     </div>
   )
