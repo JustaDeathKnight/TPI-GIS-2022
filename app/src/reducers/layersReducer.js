@@ -3,7 +3,8 @@ const layersString = 'Provincias,Obra_de_Comunicación,Obra_Portuaria,Otras_Edif
 export const availableLayers = layersString.split(',').map((layer) => {
   return {
     sourceName: layer,
-    name: layer.replace(/_/g, ' ').replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase()),
+    name: layer.replace(/_/g, ' ').replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase()).replace(/(Veg)/, 'Vegetación').replace(/(Sue)/, 'Suelo').replace(/(Lim)/, 'Limítrofe').replace(/(Edif)/, 'Edificios'),
+    zIndex: layer.match(/(Puntos|Edif|Edificio|Edificios|Complejo|Infraestructura|Estructuras|Red|Salvado|Señalizaciones|Marcas|Vias|Obra|Actividades|Curvas)/) ? 1 : 0,
     visible: false
   }
 }).sort((a, b) => a.name.localeCompare(b.name))

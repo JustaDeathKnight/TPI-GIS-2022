@@ -218,6 +218,7 @@ const App = () => {
                   <ImageLayer
                     key={layer.name}
                     source={ImageWMS(url, layer.sourceName)}
+                    zIndex={layer.zIndex}
                   />
                 )}
               </div>
