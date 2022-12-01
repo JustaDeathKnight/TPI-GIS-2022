@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react'
-import MapContext from '../Map/MapContext'
 import OLVectorLayer from 'ol/layer/Vector'
 import { Fill, Icon, Stroke, Style } from 'ol/style'
 import { Overlay } from 'ol'

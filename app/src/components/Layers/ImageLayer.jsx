@@ -1,5 +1,4 @@
 import { useContext, useEffect } from 'react'
-import MapContext from '../Map/MapContext'
 import { Image } from 'ol/layer'
 import { useSelector } from 'react-redux'
 

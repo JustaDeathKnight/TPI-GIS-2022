@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { FullScreen } from 'ol/control'
-import MapContext from '../Map/MapContext'
 import { useSelector } from 'react-redux'
 
 const FullScreenControl = () => {

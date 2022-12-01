@@ -129,10 +129,8 @@ app.post('/intersect', async (req, res) => {
     const layersNames = [] = layers.map((layer) => layer.sourceName);
     let wkt = ''
     if (coords.length == 2) {
-        //es un punto [lon,lat]
         wkt = 'POINT(' + coords[0] + ' ' + coords[1] + ')';
     } else {
-        //es un poligono en la forma [ [ [lon,lat],[lon,lat],....] ]
         wkt = 'POLYGON((';
         for (var i = 0; i < coords[0].length - 1; i++) {
             wkt += coords[0][i][0] + ' ' + coords[0][i][1] + ',';

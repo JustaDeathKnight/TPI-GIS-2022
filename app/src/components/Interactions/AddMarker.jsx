@@ -1,5 +1,4 @@
-import MapContext from '../Map/MapContext'
-import { useContext, useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { availableStates } from '../../reducers/interactionReducer'
 import { useSelector } from 'react-redux'
 import { Feature, Overlay } from 'ol'
@@ -98,15 +97,15 @@ const AddMarkerInteraction = ({ markersLayerSource }) => {
       {isShown && (
         <div className='bg-gray-500 p-5 rounded-lg gap-3 flex flex-col'>
           <div className='flex flex-col gap-2'>
-            <label className='bg-slate-600 rounded-md p-2' htmlFor='name'>Nombre</label>
-            <input className=' p-2 rounded-md' type='text' name='name' required />
+            <label className='bg-slate-600 rounded-md p-1.5 text-white' htmlFor='name'>Nombre</label>
+            <input className=' p-1.5 rounded-md' type='text' name='name' required />
           </div>
           <div className='flex flex-col gap-2'>
-            <label className='bg-slate-600 rounded-md p-2' htmlFor='description'>Descripción</label>
-            <input className=' p-2 rounded-md' type='text' name='description' required />
+            <label className='bg-slate-600 rounded-md p-1.5 text-white' htmlFor='description'>Descripción</label>
+            <input className=' p-1.5 rounded-md' type='text' name='description' required />
           </div>
-          <button className='bg-slate-600 rounded-md p-2' type='submit'>Guardar</button>
-          <button className='bg-white rounded-full py-2.5 absolute -top-5 -right-4 text-xs' type='button' onClick={handleRemoveMarker}>x</button>
+          <button className='bg-slate-600 rounded-md p-2 text-white' type='submit'>Guardar</button>
+          <button className='bg-white rounded-full py-3 px-4 absolute -top-5 -right-4 text-xs' type='button' onClick={handleRemoveMarker}>x</button>
         </div>
       )}
     </form>

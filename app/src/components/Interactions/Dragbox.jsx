@@ -1,10 +1,8 @@
 
-import MapContext from '../Map/MapContext'
-import { useContext, useEffect, useReducer, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { DragBox } from 'ol/interaction'
-import { Style, Icon, Stroke } from 'ol/style'
 import { always } from 'ol/events/condition'
-import { availableStates, interactionReducer } from '../../reducers/interactionReducer'
+import { availableStates } from '../../reducers/interactionReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { getIntersectedFeatures } from '../../services/api'
 
@@ -14,8 +12,6 @@ const DragBoxInteraction = ({ dragBoxOptions, onBoxend }) => {
   const visibleLayers = useSelector(store => store.layers.filter(layer => layer.visible))
 
   const map = useSelector(store => store.map)
-
-  const [dragBox, setDragBox] = useState(null)
 
   const dispatch = useDispatch()
 
@@ -36,17 +32,7 @@ const DragBoxInteraction = ({ dragBoxOptions, onBoxend }) => {
     const interactionCoordinates = evt.target.getGeometry().getCoordinates()
     handleIntersectedFeatures(interactionCoordinates)
   }
-
-  // useEffect(() => {
-  //   if (!map) return
-
-  //   setDragBox(dragBox)
-
-  //   return () => {
-  //     map.removeInteraction(dragBox)
-  //   }
-  // }, [map])
-
+  
   useEffect(() => {
     if (!map) return
 
