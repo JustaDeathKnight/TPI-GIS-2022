@@ -1,12 +1,11 @@
 import React, { useRef, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { SET_TARGET } from '../../reducers/mapReducer'
+import { useSelector } from 'react-redux'
 
 const Map = ({ children }) => {
   const mapRef = useRef()
 
   const map = useSelector(store => store.map)
-  // on component mount
+
   useEffect(() => {
     map.setTarget(mapRef.current)
 

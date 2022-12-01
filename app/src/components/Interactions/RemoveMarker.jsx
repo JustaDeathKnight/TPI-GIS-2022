@@ -1,5 +1,4 @@
 
-import MapContext from '../Map/MapContext'
 import { useContext, useEffect, useReducer, useState, useMemo } from 'react'
 import { DragBox } from 'ol/interaction'
 import { Style, Icon, Stroke } from 'ol/style'
@@ -12,8 +11,6 @@ const RemoveMarkerInteraction = ({ markersLayerSource }) => {
   const map = useSelector(store => store.map)
 
   const selectedOption = useSelector(store => store.interaction)
-
-  const [dragBox, setDragBox] = useState(null)
 
   const handleIntersectedFeatures = async (evt) => {
     try {

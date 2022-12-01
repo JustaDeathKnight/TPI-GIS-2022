@@ -1,5 +1,4 @@
 import { useContext, useEffect } from 'react'
-import MapContext from '../Map/MapContext'
 import OLTileLayer from 'ol/layer/Tile'
 import { useSelector } from 'react-redux'
 

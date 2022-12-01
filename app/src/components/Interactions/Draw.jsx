@@ -1,6 +1,5 @@
 
-import MapContext from '../Map/MapContext'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Draw from 'ol/interaction/Draw'
 import { availableStates } from '../../reducers/interactionReducer'
 import { useSelector } from 'react-redux'

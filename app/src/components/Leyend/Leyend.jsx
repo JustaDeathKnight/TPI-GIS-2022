@@ -29,7 +29,7 @@ const Leyend = ({ url }) => {
   return (
     <>
       {leyendSource &&
-        <div className='bg-gray-500 p-3 flex flex-col gap-2 rounded-lg'>
+        <div className='bg-gray-500 p-3 flex flex-col gap-2 rounded-lg text-white'>
           <h6 className='bg-slate-600 rounded-md p-2'>
             Leyenda:
           </h6>
