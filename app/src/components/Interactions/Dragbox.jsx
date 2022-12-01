@@ -13,13 +13,14 @@ const DragBoxInteraction = ({ dragBoxOptions, onBoxend }) => {
 
   const visibleLayers = useSelector(store => store.layers.filter(layer => layer.visible))
 
-  const { map } = useContext(MapContext)
+  const map = useSelector(store => store.map)
 
   const [dragBox, setDragBox] = useState(null)
 
   const dispatch = useDispatch()
 
   const handleIntersectedFeatures = (interactionCoordinates) => {
+    if (visibleLayers.length === 0) return
     getIntersectedFeatures(visibleLayers, interactionCoordinates).then((response) => {
       console.log(response)
       dispatch({ type: 'SET_CONSULT_LAYER', payload: response })
@@ -36,6 +37,16 @@ const DragBoxInteraction = ({ dragBoxOptions, onBoxend }) => {
     handleIntersectedFeatures(interactionCoordinates)
   }
 
+  // useEffect(() => {
+  //   if (!map) return
+
+  //   setDragBox(dragBox)
+
+  //   return () => {
+  //     map.removeInteraction(dragBox)
+  //   }
+  // }, [map])
+
   useEffect(() => {
     if (!map) return
 
@@ -44,16 +55,8 @@ const DragBoxInteraction = ({ dragBoxOptions, onBoxend }) => {
       condition: always
     })
 
-    setDragBox(dragBox)
-
-    return () => {
-      map.removeInteraction(dragBox)
-    }
-  }, [map])
-
-  useEffect(() => {
-    if (visibleLayers.length <= 0) return
     dragBox.on('boxend', getBoxCoordinates)
+
     if (selectedOption === availableStates.consultation) {
       map.addInteraction(dragBox)
       map.on('click', getPointCoordinates)
@@ -64,8 +67,9 @@ const DragBoxInteraction = ({ dragBoxOptions, onBoxend }) => {
     return () => {
       dragBox.un('boxend', getBoxCoordinates)
       map.un('click', getPointCoordinates)
+      map.removeInteraction(dragBox)
     }
-  }, [visibleLayers])
+  }, [selectedOption, visibleLayers])
 
   return null
 }

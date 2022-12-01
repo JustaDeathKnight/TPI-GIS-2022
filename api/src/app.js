@@ -140,42 +140,52 @@ app.post('/intersect', async (req, res) => {
         wkt += coords[0][0][0] + ' ' + coords[0][0][1] + '))'
     }
     if (layersNames.length>0){
-    const initialQuery = layersNames.reduce((acc, layer, index) => {
-        if (index === 0) {
-           return acc + '"' + layer + '"'
-        } 
-        return acc + " JOIN " + '"' + layer + '"' + ' ON ST_Intersects("' + layer + '".geometry, "' + layersNames[index-1] + '".geometry) '
-    }, 
-    'SELECT *, ST_AsGeoJSON("'+ layersNames[0] + '".geometry) as features FROM '
-    )
-    const query = initialQuery + ' WHERE ST_Intersects(ST_GeomFromText(\'' + wkt + '\', 4326), "' + layersNames[0]+'".geometry)';
-    console.log(query);
-    const pg = new Pool({ 
+    const pool = new Pool({ 
         user
         , host
         , database
         , password
         , port
-    }).query(query, (err, results) => {
-        if (err) {
-            console.log(err);
-            res.status(500).send(err
-            );
-        }
-        const features = results?.rows?.map((row) => {
-            const { features, geometry, ...properties } = row;
-            return {
-                type: 'Feature',
-                geometry: {
-            ...JSON.parse(features),
-            properties,
-                }
+    })
+    const client = await pool.connect();
+    let result = {}
+    try {            
+        await client.query('BEGIN');
+        await Promise.all(layersNames.map(async (layer) => {    
+            const initialQuery =  'SELECT *, ST_AsGeoJSON("'+ layer + '".geometry) as features FROM '+ '"'+ layer +'"';
+            const query = initialQuery + ' WHERE ST_Intersects(ST_GeomFromText(\'' + wkt + '\', 4326), "' + layer+'".geometry)';
+            console.log(query);
+            const {rows} = await client.query(query);
+            const features = rows?.map((row) => {
+                const { features, geometry, ...properties } = row;
+                return {
+                    type: 'Feature',
+                    geometry: {
+                ...JSON.parse(features),
+                    },
+                    properties
+                };
+            });
+            result = { 
+                ...result,
+                [layer]: 
+                {type: 'FeatureCollection', features }
             };
-        });
-        res.status(200).send({type: 'FeatureCollection', features });
-    });
-}
-
+        }));
+        console.log(result);
+        res.status(200).send(result);
+    }
+    catch (e) {
+        await client.query('ROLLBACK');
+        throw e;
+    }
+    finally {
+        client.release();
+    }
+    } else {
+        res.status(200).send({type: 'FeatureCollection', features: [] });
+    }
 });
+
 
 module.exports = app;

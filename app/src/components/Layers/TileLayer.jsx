@@ -1,9 +1,10 @@
 import { useContext, useEffect } from 'react'
 import MapContext from '../Map/MapContext'
 import OLTileLayer from 'ol/layer/Tile'
+import { useSelector } from 'react-redux'
 
 const TileLayer = ({ source, zIndex = 0 }) => {
-  const { map } = useContext(MapContext)
+  const map = useSelector(store => store.map)
 
   useEffect(() => {
     if (!map) return

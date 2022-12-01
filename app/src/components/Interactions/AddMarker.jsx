@@ -11,7 +11,7 @@ import GeoJSON from 'ol/format/GeoJSON'
 const AddMarkerInteraction = ({ markersLayerSource }) => {
   const selectedOption = useSelector(store => store.interaction)
 
-  const { map } = useContext(MapContext)
+  const map = useSelector(store => store.map)
 
   const popUpRef = useRef(null)
 

@@ -5,13 +5,13 @@ import { DragBox } from 'ol/interaction'
 import { Style, Icon, Stroke } from 'ol/style'
 import { always } from 'ol/events/condition'
 import { availableStates, interactionReducer } from '../../reducers/interactionReducer'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { removeMarkers } from '../../services/api'
 
 const RemoveMarkerInteraction = ({ markersLayerSource }) => {
-  const selectedOption = useSelector(store => store.interaction)
+  const map = useSelector(store => store.map)
 
-  const { map } = useContext(MapContext)
+  const selectedOption = useSelector(store => store.interaction)
 
   const [dragBox, setDragBox] = useState(null)
 
@@ -40,16 +40,6 @@ const RemoveMarkerInteraction = ({ markersLayerSource }) => {
       condition: always
     })
 
-    setDragBox(dragBox)
-
-    return () => {
-      map.removeInteraction(dragBox)
-    }
-  }, [map])
-
-  useEffect(() => {
-    if (!map) return
-
     dragBox.on('boxend', handleIntersectedFeatures)
 
     if (selectedOption === availableStates.removeMarker) {
@@ -62,7 +52,7 @@ const RemoveMarkerInteraction = ({ markersLayerSource }) => {
     }
   }, [selectedOption])
 
-  return null
+  return <></>
 }
 
 export default RemoveMarkerInteraction

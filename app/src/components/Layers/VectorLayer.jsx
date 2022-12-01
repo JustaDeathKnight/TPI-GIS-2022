@@ -4,22 +4,23 @@ import OLVectorLayer from 'ol/layer/Vector'
 import { Fill, Icon, Stroke, Style } from 'ol/style'
 import { Overlay } from 'ol'
 import CircleStyle from 'ol/style/Circle'
+import { useSelector } from 'react-redux'
 
 const VectorLayer = ({ source, style, zIndex = 0, marker = false }) => {
-  const { map } = useContext(MapContext)
+  const map = useSelector(store => store.map)
 
   const [vectorLayer, setVectorLayer] = useState(null)
 
   const styleFunctionMarkers = (feature) => {
     if (feature.get('overlay')) {
-    return new Style({
-      image: new Icon({
-        anchorXUnits: 'fraction',
-        anchorYUnits: 'fraction',
-        displacement: [0, 13],
-        src: 'https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-32.png'
+      return new Style({
+        image: new Icon({
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
+          displacement: [0, 13],
+          src: 'https://cdn2.iconfinder.com/data/icons/social-media-and-payment/64/-47-32.png'
+        })
       })
-    })
     }
     const div = document.createElement('div')
     div.className = 'p-2 bg-gray-100 rounded-md shadow-md'
