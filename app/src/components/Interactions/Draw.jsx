@@ -6,12 +6,7 @@ import { availableStates } from '../../reducers/interactionReducer'
 import { useSelector } from 'react-redux'
 import { unByKey } from 'ol/Observable'
 import { getLength } from 'ol/sphere'
-import ReactTooltip from 'react-tooltip'
 import { Overlay } from 'ol'
-
-const getPointCoordinates = (evt) => {
-  console.log(evt.coordinate)
-}
 
 const formatLength = function (line) {
   const length = getLength(line, { projection: 'EPSG:4326' })
@@ -24,16 +19,16 @@ const formatLength = function (line) {
   return output
 }
 
-let measureTooltipElement
-
-let measureTooltip
-
-const DrawInteraction = ({ drawOptions, onDrawStart, onDrawEnd }) => {
+const DrawInteraction = ({ drawOptions }) => {
   const selectedOption = useSelector(store => store.interaction)
 
-  const { map } = useContext(MapContext)
+  const map = useSelector(store => store.map)
 
   const [draw, setDraw] = useState(null)
+
+  let measureTooltipElement
+
+  let measureTooltip
 
   function createMeasureTooltip () {
     if (measureTooltipElement) {
@@ -80,6 +75,7 @@ const DrawInteraction = ({ drawOptions, onDrawStart, onDrawEnd }) => {
     draw.on('drawend', function () {
       measureTooltipElement.className = 'ol-tooltip ol-tooltip-static'
       measureTooltip.setOffset([0, -7])
+      sketch.set('overlay', measureTooltip)
       // unset sketch
       sketch = null
       measureTooltipElement = null
@@ -90,7 +86,9 @@ const DrawInteraction = ({ drawOptions, onDrawStart, onDrawEnd }) => {
 
     setDraw(draw)
 
-    return () => map.removeInteraction(draw)
+    return () => {
+      map.removeInteraction(draw)
+    }
   }, [map])
 
   useEffect(() => {
@@ -98,10 +96,8 @@ const DrawInteraction = ({ drawOptions, onDrawStart, onDrawEnd }) => {
 
     if (selectedOption === availableStates.measurement) {
       map.addInteraction(draw)
-      map.on('click', getPointCoordinates)
     } else {
       map.removeInteraction(draw)
-      map.un('click', getPointCoordinates)
     }
   }, [selectedOption])
 

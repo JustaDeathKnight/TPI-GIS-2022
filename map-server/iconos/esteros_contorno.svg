@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="126.63649mm"
+   height="13.443852mm"
+   viewBox="0 0 126.63649 13.443852"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="esteros_contorno.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.93539562"
+     inkscape:cx="221.29674"
+     inkscape:cy="31.002925"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g2011" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-46.148298,-142.89556)">
+    <g
+       id="g2011"
+       transform="matrix(0.99373301,0,0,0.6057796,0.26616599,61.621192)"
+       style="fill:#0237f9;fill-opacity:1">
+      <g
+         id="g2073">
+        <rect
+           style="fill:#0237f9;fill-opacity:1;stroke:#00c80b;stroke-width:0"
+           id="rect1841"
+           width="50.631428"
+           height="4.8085713"
+           x="83.725716"
+           y="151.32857" />
+        <path
+           id="rect1841-4"
+           style="fill:#0237f9;fill-opacity:1;stroke:#00c80b;stroke-width:0"
+           d="m 67.903715,125.49713 c 20.510103,7.80523 26.45626,12.05684 40.645275,11.50209 v 4.80857 c -16.95018,0.7074 -28.604199,-8.26133 -42.187279,-10.32708 z"
+           sodipodi:nodetypes="ccccc"
+           transform="rotate(8.5111475)" />
+        <path
+           id="rect1841-4-3"
+           style="fill:#0237f9;fill-opacity:1;stroke:#00c80b;stroke-width:0"
+           d="m 171.19601,134.21096 c -19.12904,10.7548 -24.38047,15.83963 -38.49532,17.39099 l 0.71167,4.75561 c 16.86821,-1.80905 27.0665,-12.40382 40.19425,-16.45714 z"
+           sodipodi:nodetypes="ccccc" />
+      </g>
+    </g>
+  </g>
+</svg>

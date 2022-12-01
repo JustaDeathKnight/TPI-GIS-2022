@@ -1,45 +1,22 @@
-import React, { useRef, useState, useEffect } from 'react'
-import './Map.css'
-import MapContext from './MapContext'
-import * as ol from 'ol'
+import React, { useRef, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { SET_TARGET } from '../../reducers/mapReducer'
 
-const Map = ({ children, zoom, center, projection }) => {
+const Map = ({ children }) => {
   const mapRef = useRef()
-  const [map, setMap] = useState(null)
 
+  const map = useSelector(store => store.map)
   // on component mount
   useEffect(() => {
-    const options = {
-      view: new ol.View({ zoom, center, projection })
-    }
+    map.setTarget(mapRef.current)
 
-    const mapObject = new ol.Map(options)
-    mapObject.setTarget(mapRef.current)
-    setMap(mapObject)
-
-    return () => mapObject.setTarget(undefined)
+    return () => map.setTarget(undefined)
   }, [])
 
-  // zoom change handler
-  useEffect(() => {
-    if (!map) return
-
-    map.getView().setZoom(zoom)
-  }, [zoom])
-
-  // center change handler
-  useEffect(() => {
-    if (!map) return
-
-    map.getView().setCenter(center)
-  }, [center])
-
   return (
-    <MapContext.Provider value={{ map }}>
-      <div ref={mapRef} className='ol-map'>
-        {children}
-      </div>
-    </MapContext.Provider>
+    <div ref={mapRef} id='ol-map' className='ol-map sm:min-w-[calc(100vw - 20vw)] sm:h-screen sm:w-full w-screen h-[60vh] min-h-[60vh]'>
+      {children}
+    </div>
   )
 }
 

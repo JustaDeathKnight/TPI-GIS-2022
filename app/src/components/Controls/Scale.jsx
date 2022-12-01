@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { FullScreen, ScaleLine } from 'ol/control'
 import MapContext from '../Map/MapContext'
+import { useSelector } from 'react-redux'
 
 const ScaleControl = () => {
-  const { map } = useContext(MapContext)
+  const map = useSelector(store => store.map)
 
   useEffect(() => {
     if (!map) return
@@ -12,6 +13,7 @@ const ScaleControl = () => {
       units: 'metric',
       bar: true,
       steps: parseInt(4, 10),
+      text: true,
       minWidth: 140
     })
 

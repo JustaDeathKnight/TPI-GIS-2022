@@ -1,7 +1,9 @@
 export const availableStates = {
   navigation: 'navigation',
   consultation: 'consultation',
-  measurement: 'measurement'
+  measurement: 'measurement',
+  addMarker: 'addMarker',
+  removeMarker: 'removeMarker'
 }
 
 const INITIAL_STATE = availableStates.navigation
