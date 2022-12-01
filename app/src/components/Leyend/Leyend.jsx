@@ -12,7 +12,7 @@ const Leyend = ({ url }) => {
   useEffect(() => {
     if (visibleLayers.length > 0) {
       const wmsSource = new ImageWMS({
-        url: url + '&LAYERTITLE=FALSE&TRANSPARENT=TRUE&ITEMFONTCOLOR=0x213547&WIDTH=3000&HEIGHT=3000',
+        url: url + '&TRANSPARENT=TRUE&ITEMFONTCOLOR=0x213547&WIDTH=3000&HEIGHT=3000',
         params: {
           LAYERS: visibleLayers.map(layer => layer.sourceName).join(','),
           FORMAT: 'image/png'

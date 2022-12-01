@@ -32,7 +32,6 @@ import { SET_CENTER, SET_PROJECTION, SET_ZOOM } from './reducers/mapReducer'
 const url = `http://localhost/qgis/qgis_mapserv.fcgi.exe?map=${VITE_MAP}`
 
 const App = () => {
-
   const consultLayer = useSelector(state => state.consultLayer)
 
   const selectedOption = useSelector(store => store.interaction)
@@ -47,7 +46,7 @@ const App = () => {
 
   const dispatch = useDispatch()
 
-  const [measureLayerSource, setSource] = useState(new VectorSource())
+  const [measureLayerSource, setMeasureLayerSource] = useState(new VectorSource())
 
   const [consultLayerSource, setConsultLayerSource] = useState(new VectorSource())
 
@@ -211,7 +210,6 @@ const App = () => {
             }
               zIndex={0}
             />
-
             {availableLayers.map((layer) => (
               <div key={layer.name}>
                 {layer.visible && (
@@ -230,7 +228,7 @@ const App = () => {
                 'stroke-width': 2,
                 'circle-radius': 7,
                 'circle-fill-color': '#ffcc33'
-              }} zIndex='1'
+              }} zIndex='4'
             />
             <VectorLayer
               zIndex={5}
@@ -288,8 +286,7 @@ const App = () => {
               {filterLayers?.map((layer) => (
                 <div key={layer.name}>
                   <input
-            // create a input checkbox for each layer with tailwind classes
-                    className='form-checkbox h-5 w-5 text-blue-600'
+                    className='form-checkbox h-5 w-5 text-blue-600 accent-slate-800 cursor-pointer'
                     type='checkbox'
                     checked={layer.visible}
                     onChange={(event) => dispatch({ type: TOGGLE_LAYER, name: layer.name })}
