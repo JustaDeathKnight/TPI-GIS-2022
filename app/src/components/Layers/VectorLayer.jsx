@@ -23,10 +23,21 @@ const VectorLayer = ({ source, style, zIndex = 0, marker = false }) => {
       })
     }
     const div = document.createElement('div')
-    div.className = 'p-2 bg-gray-100 rounded-md shadow-md'
-    div.innerHTML = `
-      <h3>Nombre: ${feature.get('Nombre')}</h3>
-      <p>Descripcion: ${feature.get('Descripcion')}</p>`
+    div.className = 'p-2 bg-gray-100 rounded-md shadow-md sm:text-md text-xs'
+    const h3 = document.createElement('h3')
+    h3.innerHTML = feature.get('Nombre')
+    const p = document.createElement('p')
+    p.innerHTML = feature.get('Descripcion')
+    const span1 = document.createElement('span')
+    span1.className = 'text-xs text-slate-500'
+    span1.innerHTML = 'Nombre: '
+    const span2 = document.createElement('span')
+    span2.className = 'text-xs text-slate-500'
+    span2.innerHTML = 'Descripción: '
+    h3.prepend(span1)
+    p.prepend(span2)
+    div.appendChild(h3)
+    div.appendChild(p)
     const overlay = new Overlay({
       offset: [0, -30],
       positioning: 'bottom-center',
